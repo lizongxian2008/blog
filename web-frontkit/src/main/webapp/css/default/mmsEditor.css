@@ -1,0 +1,126 @@
+
+/* Sample CSS for RightClickMenu plugin */
+
+ul.mmsMediaItems li, ul.mmsContentForm, ul.mmsContentForm li { padding:3px;color:#303030; }
+ul.mmsContentForm { list-style-type:none;}
+.mmsContentForm li{height:22px;}
+.mmsMediaItems input, .mmsMediaItems select{vertical-align:middle;}
+.mmsMediaItems img{vertical-align:middle;padding-right:5px;}
+.mmsMediaItems a:link{color:#303030;}
+.mmsMediaItems a:hover{color:#de5900;}
+
+.mms_height{background-color: #ebe9ed;height:435px;_height:437px;}
+
+#mmsContainer,.#smsContainer { width:100%;overflow:hidden;}
+#mmsContainer .phone { width:227px;_width:224px;_margin-left:-3px;float:right; background: url('../../images/default/phone_bg.png') no-repeat top center;  }
+#mmsContainer .phone ul { list-style-type:none; padding:0;margin:10px 26px 12px 32px;width:175px;_width:170px;height:255px; word-wrap:break-word;word-break:break-all; overflow-x:hidden; overflow-y:auto;}
+
+#mmsContainer .editForm {width:75%; border-right:solid 1px #9FA0A0;position:absolute;height:100%;background:#eee; }
+#mmsContainer .editForm ul{background:#eee;padding-left:5px;}
+
+#smsContainer .phone_sms {width:215px;float:right; background: url('../../images/default/phone_bg.png') no-repeat top center;  }
+#smsContainer .phone_sms ul {list-style-type:none; padding:0;margin:auto;width:175px;height:245px;word-wrap:break-word;word-break:break-all; overflow-x:hidden; overflow-y:auto;}
+
+#frameToolbar {float: right; width: 20px;}
+.mmsimg{border-bottom: solid 1px #A7A6A6; padding-top: 4px;background:#fff;}
+#frameToolbar input, #frameContainer .frameNumbers input, #frameContainer .frames input {border: 0 none; cursor: pointer; font-size: 0; height: 16px; width: 16px;}
+#frameContainer .frames input {background: url("../../images/default/mms/icon_delete.png") no-repeat scroll 0 0 transparent; float: right; }
+
+#frameToolbar .add { background:url('../../images/default/mms/icon_add.png') no-repeat; margin-top:4px; }
+
+#mmsContainer .mmsMediaItems { border-bottom:solid 1px #9FA0A0; overflow:auto; }
+
+#frameContainer { padding:0 6px 6px 6px; width:90%; height:103px; overflow-x:auto; overflow-y: hidden; }
+#frameContainer .frameNumbers{list-style-type:none; clear:both; padding:0; margin:0; float:none;}
+#frameContainer .frames {margin:0 0 4px 0; width:100%; list-style-type:none; clear:both; padding:0;}
+#frameContainer .frameNumbers li, #frameContainer .frames li { float:left; width:71px; margin:auto 2px; text-align:center; padding:0; border:solid 2px #fff; }
+#frameContainer .frames li { background:url('../../images/default/mms/frame_bg.png') no-repeat top center; height:71px;  }
+#frameContainer .frames li img { width:100%; height:100%; float: left;}
+#frameContainer .frames li div { background:red; position:relative; top:0; left:0; z-index:1222; font-size:12px; }
+#frameContainer .frames input { float:right; background:url('../../images/default/mms/icon_delete.png') no-repeat;}
+
+.uploadSpan { z-index: 100; }
+
+.inputFile { display: block; height: 22px; width:79px; line-height: 22px; text-align: center; overflow: hidden; position: relative; background:url('../../images/default/mms_btn.gif') repeat;background-position:-60px 0;}
+.inputFile input { opacity: 0; filter: alpha(opacity=0); font-size: 100px; cursor: pointer; position: absolute; top: 0; right: 0; }
+
+.smscontent1{width:99.5%; height:100px; overflow:auto; font-size:14px;list-style:none; margin:0; padding:0; border:1px solid #b5b5b6;}
+
+/*左侧栏目*/
+.left_nav{float:left;background-color: #eee;border-bottom: #999 1px solid;width:100%;}
+.left_nav a{height:22px;padding:8px 8px 0 5px;float:left;}
+.left_nav a img, .left_nav_a input,.left_nav_a img{vertical-align:middle;padding-right:5px;}
+.left_nav_a{float:left;width:100%;background-color: #eee;height:26px;padding-top:4px;_padding-bottom:2px;border-bottom: #999 1px solid;border-top:solid 1px #fff;color:#303030;}
+.left_nav_b{float:left;width:100%;background-color: #eee;height:31px;line-height:31px; border-bottom: #999 1px solid;border-top:solid 1px #fff;}
+.left_nav_a a:hover, .left_nav a:hover, .left_nav_b a:hover{color:#DE5900;}
+.template{float:right;_top:12px;margin-top:-53px;}
+.template_input{background:url('../../images/default/template.gif') no-repeat;border:none;width:83px;height:34px;cursor:pointer;text-indent:16px;}
+.template_input:hover{background:url('../../images/default/template_a.gif') no-repeat;border:none;width:83px;height:34px;cursor:pointer;text-indent:16px;}
+
+/* 按钮样式 */
+.mms_img {background:url('../../images/default/mms_btn.gif') no-repeat;width:60px;height:22px;line-height:22px;border:0;cursor:pointer;}
+.mms_img:hover {background-position:0 -22px;}
+
+.inputFile:hover {background-position:-60px -22px;}
+
+.mms_play {background:url('../../images/default/mms_btn.gif') no-repeat;width:30px;height:22px;line-height:22px;border:0;cursor:pointer;background-position:-199px 0;}
+.mms_play:hover {background-position:-199px -22px;}
+
+.mms_stop {background:url('../../images/default/mms_btn.gif') no-repeat;width:30px;height:22px;line-height:22px;border:0;cursor:pointer;background-position:-428px 0;}
+.mms_stop:hover {background-position:-428px -22px;}
+
+.mms_del {background:url('../../images/default/mms_btn.gif') no-repeat;width:60px;height:22px;line-height:22px;border:0;cursor:pointer;background-position:-139px 0;}
+.mms_del:hover {background-position:-139px -22px;}
+.mms_voice {background:url('../../images/default/mms_btn.gif') no-repeat;width:60px;height:22px;line-height:22px;border:0;cursor:pointer;background-position:-229px 0;}
+.mms_voice:hover {background-position:-229px -22px;}
+.mms_send {background:url('../../images/default/mms_btn.gif') no-repeat;width:60px;height:22px;line-height:22px;border:0;cursor:pointer;background-position:-289px 0;}
+.mms_send:hover {background-position:-289px -22px;}
+.mms_save {background:url('../../images/default/mms_btn.gif') no-repeat;width:79px;height:22px;line-height:22px;border:0;cursor:pointer;background-position:-349px 0;}
+.mms_save:hover {background-position:-349px -22px;}
+
+#mmsContainer #play_status{color:White; font-size:12px; margin:63px 26px 12px auto; width:180px; height:20px;}
+
+.playButtons { text-align:center;height:68px; }
+.playButtons input { margin:auto; cursor:pointer; overflow:hidden; font-size:0; line-height:100px; border:0; width:43px; height:44px; background:url('../../images/default/mms/mms_palyer_button.gif') no-repeat; }
+.playButtons input.bt_play { background-position:0px 0px; }
+.playButtons input.bt_play_over { background-position:-43px 0px; }
+.playButtons input.bt_stop { background-position:-86px 0px; }
+.playButtons input.bt_stop_over { background-position:-129px 0px; }
+
+#mmsPlayerMask { display:none; position:absolute; left:0; top:0; width:100%; height:100%; z-index:2000; background-color:#000000;-moz-opacity:0.3;opacity:0.3;filter: alpha(opacity=30); }
+
+.thumbImage{max-width:173px; }
+*.thumbImage{width:expression(this.width>173?173:true);}
+
+#div_preview_mms .phone{
+    height: 440px;
+    min-width: 235px !important;
+    width: 235px;
+    background: url("../../images/default/phone_bg.png") no-repeat right top;
+    *background: url("../../images/default/phone_bg.gif") no-repeat right top;
+}
+#div_preview_mms .closeButton {
+    float: right;
+    height: 30px;
+    margin-left: 198px;
+    margin-top: 3px;
+    position: absolute;
+    left: 15px;
+    width: 30px;
+    z-index: 50;
+    background: url("../../images/default/icon_close.png") no-repeat;
+    *background: url("../../images/default/icon_close.gif") no-repeat;
+}
+#div_preview_mms .phone ul{
+	height: 252px;
+	position: fixed;
+    list-style-type: none;
+    margin: 96px 26px 12px 32px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+    width: 175px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+#div_preview_mms #play_status{color:White; font-size:12px; margin:63px 26px 12px 26px; width:180px; height:20px;position: absolute;}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<!-- Used by the mto client to fetch the frame -->
+<mapper namespace="com.xuanwu.web.common.dao.mapper.BizDataMapper">
+	
+	<!-- entity 权限表(gsms_permission)，对应每一个功能点-->
+	<resultMap type="com.xuanwu.web.common.entity.Permission" id="permission">
+		<id property="id" column="id" />
+		<result property="displayName" column="display_name"/>
+		<result property="areaName" column="area_name"/>
+		<result property="controllerName" column="controller_name"/>
+		<result property="actionName" column="action_name"/>
+		<result property="parentId" column="parent_id"/>
+		<result property="menu" column="is_menu"/>
+		<result property="menuImagePath" column="menu_image_path"/>
+		<result property="menuDisplayName" column="menu_display_name"/>
+		<result property="menuDisplayOrder" column="menu_display_order"/>
+		<result property="menuHasHyperlink" column="menu_has_hyperlink"/>
+		<result property="display" column="is_display"/>
+		<result property="level" column="level"/>
+		<result property="dataScopes" column="data_scopes"/>
+		<result property="url" column="url"/>
+		<result property="platformId" column="platform_id"/>
+		<result property="operationObj" column="operation_obj"/>
+	</resultMap>
+	
+	<!-- entity 角色权限关系表(gsms_role_permission),每个角色可以操作的功能点 -->
+	<resultMap type="com.xuanwu.web.common.entity.RolePermission" id="rolePermission">
+		<result property="roleId" column="role_id"/>
+		<result property="permissionId" column="permission_id"/>
+		<result property="dataScopeId" column="data_scope"/>
+	</resultMap>
+	
+	<!-- entity 系统配置表(gsms_sys_config) -->
+	<resultMap type="com.xuanwu.web.common.entity.ConfigRecord" id="config">
+		<result property="key" column="config_key"/>
+		<result property="value" column="config_value"/>
+		<result property="type" column="config_type"/>
+		<result property="platformId" column="platform_id"/>
+	</resultMap>
+    
+    <!-- 查找出所有的权限 -->
+    <select id="findAllPermissions" resultMap="permission">
+    	select id, display_name, area_name, controller_name, action_name, form_method, 
+    	parent_id, is_menu, menu_image_path, menu_display_name, menu_display_order, menu_has_hyperlink, 
+    	is_display, level, url, platform_id, data_scopes, operation_obj from gsms_permission 
+    	where platform_id = #{platformId}
+    </select>
+    
+    <!-- 查找角色范围内所拥有的权限 -->
+    <select id="findAllRolePermissions" resultMap="rolePermission">
+    	select role_id, permission_id, data_scope from gsms_role_permission
+    </select>
+    
+    <!-- 查找出所有的系统配置-->
+    <select id="findAllConfigs" resultMap="config">
+    	select config_key, config_value, config_type, platform_id from gsms_sys_config
+    </select>
+    
+    <!-- 查找出版本信息 -->
+    <select id="findSyncVersion" resultType="int">
+    	select version from gsms_sync_version where type = ${type.index}
+    </select>
+    
+    <!-- 更新系统配置 -->
+    <update id="updateConfig">
+    	update gsms_sys_config set config_value = #{config.value} where config_key = #{config.key} and platform_id = #{config.platformId}
+    </update>
+    
+</mapper>

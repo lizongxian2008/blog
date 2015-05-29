@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.xuanwu.web.common.dao.mapper.RoleMapper">
+	<!-- entity 角色信息表(gsms_role)，并包含 权限信息表(gsms_permission)的所有字段-->
+	<resultMap id="role" type="com.xuanwu.web.common.entity.Role">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="userId" column="user_id" />
+		<result property="remark" column="remark" />
+		<result property="lastModifyDate" column="last_modify_date" />
+		<result property="lastModifyUserId" column="last_modify_user_id" />
+		<result property="lastModifyUserName" column="last_modify_user_name" />
+		<result property="roleType" column="role_type" />
+		<result property="enterpriseId" column="enterprise_id" />
+		<result property="baseType" column="base_type" />
+		<collection property="permissions" column="id" select="findPermissionsByRoleId"/>
+	</resultMap>
+	
+	<!-- entity 权限信息表(gsms_permission),并包含角色与权限关系表(gsms_role_permission)的部分字段 -->
+	<resultMap type="com.xuanwu.web.common.entity.Permission" id="permission">
+		<id property="id" column="id" />
+		<result property="displayName" column="display_name"/>
+		<result property="areaName" column="area_name"/>
+		<result property="controllerName" column="controller_name"/>
+		<result property="actionName" column="action_name"/>
+		<result property="parentId" column="parent_id"/>
+		<result property="menu" column="is_menu"/>
+		<result property="menuImagePath" column="menu_image_path"/>
+		<result property="menuDisplayName" column="menu_display_name"/>
+		<result property="menuDisplayOrder" column="menu_display_order"/>
+		<result property="menuHasHyperlink" column="menu_has_hyperlink"/>
+		<result property="display" column="is_display"/>
+		<result property="level" column="level"/>
+		<result property="url" column="url"/>
+		<result property="dataScopes" column="data_scopes"/>
+		<result property="dataScopeId" column="dataScopeId"/>
+		<result property="platformId" column="platform_id"/>
+	</resultMap>
+	
+	<resultMap type="com.xuanwu.web.common.entity.PermissionDepends" id="permissionDepends">		
+		<result property="priId" column="pri_id"/>
+		<result property="subId" column="sub_id"/>
+	</resultMap>
+	
+	<!-- 根据所给参数，获取 角色的记录条数-->
+	<select id="findRolesCount" resultType="int">
+		select count(id) from gsms_role 
+		where ((enterprise_id = 0 and base_type = #{role.baseType})
+		<if test="role.enterpriseId > 0">or enterprise_id = #{role.enterpriseId}</if>)
+		<if test="param.ext != null">and role_type != #{param.ext}</if><!-- ext 代表排除的角色类型, ext1 代表权限名称 -->
+		<if test="role.name != null">and name like concat('%',#{role.name},'%')</if>
+		<if test="param.ext1 != null">and id in (select rp.role_id from gsms_role_permission rp inner join gsms_permission p on rp.permission_id=p.id where p.display_name like concat('%',#{param.ext1},'%'))</if>
+	</select>
+	
+	<!-- 根据所给参数，将gsms_user表和gsms_role_permission表关联，分页查询出角色-->
+	<select id="findRoles" resultMap="role">
+		select r.*,u.user_name as last_modify_user_name from gsms_role r
+		left join gsms_user u on r.last_modify_user_id = u.id
+		where ((r.enterprise_id = 0 and r.base_type = #{role.baseType})
+		<if test="role.enterpriseId > 0">or r.enterprise_id = #{role.enterpriseId}</if>)
+		<if test="param.ext != null">and r.role_type != #{param.ext}</if><!-- ext 代表排除的角色类型, ext1 代表权限名称 -->
+		<if test="role.name != null">and r.name like concat('%',#{role.name},'%')</if>
+		<if test="param.ext1 != null">and r.id in (select rp.role_id from gsms_role_permission rp inner join gsms_permission p on rp.permission_id=p.id where p.display_name like concat('%',#{param.ext1},'%'))</if>
+		<choose>
+			<when test="param.orderField == 'name'">
+				order by r.name <if test="param.desc">desc</if>
+			</when>
+			<when test="param.orderField == 'lastModifyDate'">
+				order by r.last_modify_date <if test="param.desc">desc</if>
+			</when>
+		</choose>
+		<if test="param.pi!=null">limit #{param.pi.from}, #{param.pi.size}</if>
+	</select>
+	
+	<select id="findBasePermissionIds" resultType="int">
+		select rp.permission_id from gsms_role r left join gsms_role_permission rp on r.id = rp.role_id 
+		where r.enterprise_id = 0 and r.base_type = #{baseType}
+	</select>
+	
+	<!-- 根据id查询出符合条件的角色 -->
+	<select id="findRoleById" resultMap="role">
+		select * from gsms_role where id=#{id}
+	</select>
+	
+	<!--将 gsms_permission表和 gsms_role_permission表关联查询，查询角色对应的权限-->
+	<select id="findPermissionsByRoleId" resultMap="permission">
+		select p.id,p.display_name,p.area_name,p.controller_name,p.action_name,p.form_method,
+		p.parent_id,p.is_menu,p.menu_image_path,p.menu_display_name,p.menu_display_order,
+		p.menu_has_hyperlink,p.is_display,p.level,p.platform_id,p.data_scopes,rp.data_scope as dataScopeId
+		from gsms_permission p inner join gsms_role_permission rp
+		on p.id=rp.permission_id and role_id=#{roleId}
+		order by parent_id,menu_display_order
+	</select>
+	
+	<!-- 根据角色名称(roleName)查询出对应的 角色id-->
+	<select id="findRoleByName" resultMap="role">
+		select id from gsms_role where name=#{roleName} 
+		and (enterprise_id = #{entId} or (enterprise_id=0 and base_type=#{baseType})) limit 1
+	</select>
+	
+	<!-- 添加新 角色-->
+	<insert id="addRole"> 
+		insert into gsms_role(name,user_id,remark,last_modify_date,last_modify_user_id,role_type,enterprise_id,base_type)
+		value(#{name},#{userId},#{remark},#{lastModifyDate},#{lastModifyUserId},#{roleType},#{enterpriseId},0)
+	</insert>
+	
+	<!-- 更新企业下的用户绑定角色 -->
+	<update id="updateUserRoleByEnt">
+		update role_id = #{newRoleId} gsms_user_role ur where ur.role_id = #{oldRoleId} 
+			and ur.user_id in( select u.id from gsms_user u where u.enterprise_id = #{entId} )
+	</update>
+	
+	<!-- 克隆角色权限到新角色 -->
+	<insert id="cloneRolePermission">
+		insert into gsms_role_permission (role_id, permission_id,data_scope) 
+			select #{newRoleId}, permission_id,data_scope from gsms_role_permission where role_id = #{oldRoleId}
+	</insert>
+	<!--添加用户与角色关系-->
+	<insert id="addUserRole">
+    	insert into gsms_user_role(user_id,role_id) values(#{userId}, #{roleId})
+    </insert>
+	
+	<!---添加角色与权限关系  -->
+	<insert id="addRolePermissions">
+		insert into gsms_role_permission(role_id,permission_id,data_scope)
+		values(#{roleId},#{permissionId},#{dataScopeId})
+	</insert>
+	
+	<!-- 更新角色 -->
+	<update id="updateRole">
+		update gsms_role set name=#{name},user_id=#{userId},remark=#{remark},
+		last_modify_date=#{lastModifyDate},last_modify_user_id=#{lastModifyUserId}
+		where id=#{id} and role_type != 9
+	</update>
+	
+	<!-- 删除 角色-->
+	<delete id="deleteRole">
+		delete from gsms_role where id=#{id} and role_type != 9
+	</delete>
+	
+	<!--  删除用户与角色关系-->
+	<delete id="deleteUserRoleByRoleId">
+		delete from gsms_user_role where role_id = #{roleId}
+	</delete>
+	
+	<!-- 删除角色与权限关系-->
+	<delete id="deleteRolePermissionsByRoleId">
+		delete from gsms_role_permission where role_id=#{roleId}
+	</delete>
+	
+	<!-- 查询出最后插入的表记录的id -->
+	<select id="findLastInsertId" resultType="int">
+		select last_insert_id()
+	</select>
+	
+	<select id="findPermissionDepends" resultMap="permissionDepends">
+		select * from gsms_permission_depends
+	</select>
+	
+	<!-- 根据所给参数，将gsms_user表和gsms_role_permission表关联，分页查询出角色-->
+	<select id="findDefaultRoles" resultMap="role">
+		select * from gsms_role where enterprise_id=0 and role_type = 1
+	</select>
+	
+</mapper>

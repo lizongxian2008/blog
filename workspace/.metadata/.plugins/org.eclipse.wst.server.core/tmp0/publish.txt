@@ -1,0 +1,6 @@
+#Tomcat publish data
+#Wed May 20 11:28:12 CST 2015
+org.eclipse.jst.j2ee.server\:/binary\:D\:\\repo\\org\\springframework\\spring-web\\3.2.13.RELEASE\\spring-web-3.2.13.RELEASE.jar=F\:\\apache-tomcat-7.0.62\\webapps\\web-frontkit\\WEB-INF\\lib\\spring-web-3.2.13.RELEASE.jar
+org.eclipse.jst.j2ee.server\:web-sqlmapper=F\:\\apache-tomcat-7.0.62\\webapps\\web-frontkit\\WEB-INF\\lib\\web-sqlmapper-1.0.jar
+org.eclipse.jst.j2ee.server\:web-frontkit=F\:\\apache-tomcat-7.0.62\\webapps\\web-frontkit
+org.eclipse.jst.j2ee.server\:web-common=F\:\\apache-tomcat-7.0.62\\webapps\\web-frontkit\\WEB-INF\\lib\\web-common-1.0.jar

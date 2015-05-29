@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.xuanwu.web.common.dao.mapper.UserMapper">
+
+	<resultMap id="user" type="com.xuanwu.web.common.entity.SimpleUser">
+		<id property="id" column="id" />
+		<result property="username" column="user_name" />
+		<result property="password" column="password" />
+		<result property="parentId" column="parent_id" />
+		<result property="enterpriseId" column="enterprise_id" />
+		<result property="platformId" column="platform_id" />
+		<result property="lastLoginTime" column="last_login_time"></result>
+		<result property="linkMan" column="link_man"></result>
+	</resultMap>
+
+	<resultMap id="User" type="com.xuanwu.web.common.entity.User">
+		<id property="id" column="id" />
+		<result property="state" column="state" />
+		<result property="parentId" column="parent_id" />
+		<result property="identify" column="identify" />
+		<result property="telephone" column="telephone" />
+		<result property="phone" column="phone" />
+		<result property="signature" column="signature" />
+		<result property="sigLocation" column="sig_location" />
+		<result property="enterpriseName" column="enterprise_name" />
+		<result property="parentName" column="parent_name"/>
+		<result property="enterpriseId" column="enterprise_id" />
+		<result property="linkMan" column="link_man" />
+		<result property="domain" column="domain" />
+		<result property="path" column="path" />
+		<result property="createTime" column="create_time" />
+		<result property="priority" column="priority" />
+		<result property="salemanId" column="saleman_id" />
+		<result property="platformId" column="platform_id" />
+		<result property="remark" column="remark" />
+		<result property="channelNum" column="channel_num" />
+		<result property="cmdToken" column="cmd_token" />
+		<result property="cmdSubToken" column="cmd_sub_token" />
+		<result property="cmdErrorReply" column="cmd_error_reply" />
+		<result property="billingType" column="billing_type"/>
+		<result property="wechatLimitNumber" column="wechat_limit_number"/>
+		<result property="smsAccountName" column="sms_account_name"/>
+		<result property="smsAccountPassword" column="sms_account_password"/>
+		<result property="smsAccountIp" column="sms_account_ip"/>
+		<result property="smsAccountPort" column="sms_account_port"/>
+		<result property="smsMoIp" column="sms_mo_ip"/>
+		<result property="smsMoPort" column="sms_mo_port"/>
+		<result property="creditReg" column="credit_reg"/>		
+
+		<discriminator javaType="int" column="type">
+			<case value="0" resultType="com.xuanwu.web.common.entity.Enterprise">
+				<result property="regionId" column="region_id" />
+				<result property="address" column="address" />
+				<result property="industryId" column="industry_id" />
+				<result property="hasSendMessage" column="has_send_message"></result>
+				<result property="workflowProcessRecord.isApproved" column="is_approved" />
+				<result property="workflowProcessRecord.parameters" column="parameters" />
+				<result property="workflowProcessRecord.completeTime" column="complete_time" />
+				<result property="workflowProcessRecord.operatorDomain" column="operatorDomain" />
+				<result property="workflowProcessRecord.comment" column="comment" />
+				<result property="initPassword" column="init_password" />
+				<result property="auditingState" column="auditing_state" />
+				<result property="auditingFlag" column="auditing_flag" />
+				<result property="auditingNum" column="auditing_num" />
+				<result property="auditingMmsFlag" column="auditing_mms_flag" />
+				<result property="auditingMmsNum" column="auditing_mms_num" />
+				<result property="enableBlackListFilter"  column="enable_black_list_filter" />
+				<result property="enableKeywordFilter" column="enable_keyword_filter" />
+				<result property="salemanName" column="saleman_name"/>
+				<result property="showSpecnumFlag" column="show_specnum_flag" ></result>
+				<result property="showStatereportFlag" column="show_statereport_flag"></result>
+				<result property="modifyUser" column="modify_user"></result>
+				<result property="modifyTime" column="modify_time"></result>
+				<result property="moUser" column="default_mo_user"></result>
+				<result property="balanceRemain" column="balance_remain"></result>
+				<result property="createUser" column="create_user"></result>
+				<result property="billingType" column="billing_type" />
+				<result property="paymentType" column="payment_type" />				
+			</case>
+			<case value="1" resultType="com.xuanwu.web.common.entity.Department">
+				<result property="deptName" column="enterprise_name" />
+			</case>
+			<case value="2" resultType="com.xuanwu.web.common.entity.User">
+				<result property="userName" column="user_name" />
+				<result property="isFirstTimeLogin" column="is_first_time_login" />
+				<result property="lastLoginTime" column="last_login_time" />
+				<result property="hasSendMessage" column="has_send_message" />
+				<result property="birthday" column="birthday" />
+				<result property="sex" column="sex" />
+				<result property="entState" column="ent_state"/>
+				<result property="entDomain" column="ent_domain" />
+				<result property="entParentId" column="ent_parent_id" />
+				<result property="salemanName" column="saleman_name"/>
+				<result property="agentId" column="agent_id"/>
+				<result property="agentName" column="agent_name"/>
+				<result property="agentEntName" column="agent_ent_name"/>
+			</case>
+		</discriminator>
+	</resultMap>
+	<resultMap id="Enterprise" type="com.xuanwu.web.common.entity.Enterprise">
+		<result property="billingType" column="billing_type"/>
+		<result property="showSpecnumFlag" column="show_specnum_flag" ></result>
+		<result property="showStatereportFlag" column="show_statereport_flag"></result>
+	</resultMap>
+
+	<resultMap id="role" type="com.xuanwu.web.common.entity.Role">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="name" column="name" />
+		<result property="roleType" column="role_type" />
+	</resultMap>
+
+    <resultMap id="department" type="com.xuanwu.web.common.entity.Department">
+	    <id property="id" column="id" />
+	    <result property="deptName" column="enterprise_name" />
+	</resultMap>
+
+	<select id="findUserById" resultMap="user">
+		select id,user_name,password,enterprise_id from gsms_user
+		where id=#{id} and state=0 and type=2
+	</select>
+
+	<!-- 根据用户名查找用户，登录时使用 -->
+	<select id="findUserByName" resultMap="user">
+		select id,password,parent_id,enterprise_id,platform_id,last_login_time,link_man from gsms_user
+		where user_name=#{name} and state=0 and type=2
+	</select>
+	<!-- 根据企业名称和帐号查找企业ID -->
+	<select id="findUserByParam" resultMap="user">
+		select id,enterprise_id from gsms_user
+		where type=0 and state=0 and auditing_state=1
+		<if test="domain != null"> and domain = #{domain}</if>
+		<if test="enterpriseName != null">and enterprise_name like concat('%',#{enterpriseName},'%')</if>
+	</select>
+	<!-- 根据企业名称和帐号查找企业ID -->
+	<select id="findAllStateUserByParam" resultMap="user">
+		select id,enterprise_id from gsms_user
+		where type=0 and auditing_state=1
+		<if test="domain != null"> and domain = #{domain}</if>
+		<if test="enterpriseName != null">and enterprise_name like concat('%',#{enterpriseName},'%')</if>
+	</select>
+	<!-- 根据用户ID查找绑定角色，登录时使用 -->
+	<select id="findRoleIds" resultType="java.lang.Integer">
+		select role_id from gsms_user_role where user_id=#{userId}
+	</select>
+	<!-- 根据用户ID查找管理员ID，登录时使用 -->
+	<select id="findAdminUser" resultMap="User">
+		select id,domain,type from gsms_user where parent_id=#{entId} and type=2 limit 1
+	</select>
+	<select id="findAdminSimpleUser" resultMap="user">
+		select id,user_name,password,enterprise_id from gsms_user where parent_id=#{entId} and type=2 limit 1
+	</select>
+	<!-- 查找分销企业 -->
+	<select id="findEntByDomain" resultMap="user">
+		select id  from gsms_user where domain=#{domain}
+	</select>
+	<!-- 查找企业下的所有用户 -->
+	<select id="findEntUsers" resultMap="User">
+		select id,domain,type,user_name from gsms_user where enterprise_id=#{entId} and type=2
+	</select>
+	<!-- 根据用户ID查找绑定角色详情 -->
+	<select id="findRoles" resultMap="role">
+		select distinct a.id,a.name,a.role_type from gsms_role a
+		inner join gsms_user_role b on b.role_id=a.id
+		where b.user_id=#{userId}
+	</select>
+	
+	<!-- 查找用户绑定的角色 -->
+	<select id="findUsersRoles" resultMap="role">
+		select ur.user_id,r.id,r.name from gsms_user_role ur
+		inner join gsms_role r on ur.role_id=r.id
+		where ur.user_id in
+		<foreach collection="users" index="index" item="item" open="(" separator="," close=")">#{item.id}</foreach>
+	</select>
+	<!-- 查找所有对应的短信发送账户信息 -->
+	<select id="findSimpleSmsAccounts" resultMap="User">
+		select ue.*,u.type from gsms_user_ext ue inner join  gsms_user u  on ue.enterprise_id=u.id
+		where u.state=0
+	</select>
+	<!-- 根据企业ID查找发送账户信息 -->
+	<select id="findSmsAccountByEntId" resultMap="User">
+		select ue.*,u.type from gsms_user_ext ue inner join  gsms_user u  on ue.enterprise_id=u.id where ue.enterprise_id=#{entId} 
+	</select>
+	<!-- 根据用户ID查找用户 -->
+	<select id="findUser" resultMap="User">
+		select u.*, ue.wechat_limit_number from gsms_user u left join gsms_user_ext ue on ue.enterprise_id=u.id
+		where u.id=#{id}
+	</select>
+	<!-- 根据用户ID查找用户状态 -->
+	<select id="findUserState" resultType="int">
+		select state from gsms_user where id=#{id}
+	</select>
+	<!-- 根据父ID查找子用户类型 -->
+	<select id="findChildTypes" resultType="int">
+		select type from gsms_user where parent_id=#{parentId} and (state=0 or state=1) group by type
+	</select>
+	<!-- 查找前端企业列表 -->
+	<select id="findEnterprises" resultMap="User">
+		select u.id,u.parent_id,u.domain,u.enterprise_id,u.create_time,u.enterprise_name,u.type,u.state,u.saleman_id,u.signature,
+		u.platform_id,u.auditing_state,ue.modify_user,ue.modify_time,a.auditing_flag
+		from gsms_user u
+		<if test="user.salemanName != null">
+		inner join gsms_user s on u.saleman_id=s.id
+		</if>
+		left join gsms_user_ext ue on ue.enterprise_id=u.id
+		left join gsms_user_audit a on a.enterprise_id = u.id
+		where u.type=0 and (u.state=0 or u.state=1<if test="param != null and param.ext3 == true"> or u.state=2</if>) and u.platform_id=2
+		<if test="user.state >= 0">and u.state=#{user.state}</if>
+		<if test="user.path != null">and u.saleman_id in(select s.id from gsms_user s where s.path like concat(#{user.path}, '%'))</if>
+		<if test="user.parentId > 0">and u.parent_id=#{user.parentId}</if>
+		<if test="user.parentId == -1"> and u.parent_id=0</if>
+		<if test="user.salemanId > 0">and u.saleman_id=#{user.salemanId}</if>
+		<if test="user.auditingState >= 0">and u.auditing_state=#{user.auditingState}</if>
+		<if test="user.id > 0">and u.id=#{user.id}</if>
+		<!-- <if test="user.domain != null"> and u.domain like concat('%',#{user.domain},'%')</if> -->
+		<if test="user.enterpriseName != null">and u.enterprise_name like concat('%',#{user.enterpriseName},'%')</if>
+		<if test="user.salemanName != null">and s.link_man like concat('%',#{user.salemanName},'%')</if>
+		<if test="user.signature != null">and u.signature like concat('%',#{user.signature},'%')</if>
+		<if test="user.auditingFlag == true">and a.auditing_flag=#{user.auditingFlag}</if>
+		<if test="user.auditingFlag == false">
+		and u.id not in (select a.enterprise_id from gsms_user_audit a )
+		</if>
+		<if test="param != null">
+			<!-- 直销没有代理商 -->
+			<if test="param.ext == 0">and u.parent_id=0</if>
+			<if test="param.ext == 1">and u.parent_id != 0</if>
+			<if test="param.ext1 != null">and u.create_time &gt;= #{param.ext1}</if>
+			<if test="param.ext2 != null">and u.create_time &lt;= #{param.ext2}</if>
+		</if>
+		<if test="user.forAudit == false">order by <if test="param != null and param.orderField == 'state'">u.state asc,</if>ue.modify_time desc</if>
+		<if test="param != null">limit #{param.pi.from},#{param.pi.size}</if>
+	</select>
+	<!-- 查找前端企业总数 -->
+	<select id="findEnterpriseCount" resultType="int">
+		select count(1) from  gsms_user u
+		<if test="user.salemanName != null">
+		inner join gsms_user s on u.saleman_id=s.id
+		</if>
+		<if test="user.auditingFlag == true">
+		left join gsms_user_audit a on a.enterprise_id = u.id
+		</if>
+		where u.type=0 and (u.state=0 or u.state=1 <if test="param != null and param.ext3 == true"> or u.state=2</if>)  and u.platform_id=2
+		<if test="user.state >= 0">and u.state=#{user.state}</if>
+		<if test="user.path != null">and u.saleman_id in(select s.id from gsms_user s where s.path like concat(#{user.path}, '%'))</if>
+		<if test="user.parentId > 0"> and u.parent_id=#{user.parentId}</if>
+		<if test="user.parentId == -1"> and u.parent_id=0</if>
+		<if test="user.salemanId > 0">and u.saleman_id=#{user.salemanId}</if>
+		<if test="user.auditingState >= 0">and u.auditing_state=#{user.auditingState}</if>
+		<!-- if test="user.domain != null"> and u.domain like concat('%',#{user.domain},'%')</if> -->
+		<if test="user.id > 0">and u.id=#{user.id}</if>
+		<if test="user.enterpriseName != null">and u.enterprise_name like concat('%',#{user.enterpriseName},'%')</if>
+		<if test="user.salemanName != null">and s.link_man like concat('%',#{user.salemanName},'%')</if>
+		<if test="user.auditingFlag == true">and a.auditing_flag=#{user.auditingFlag}</if>
+		<if test="user.auditingFlag == false">
+		and u.id not in (select a.enterprise_id from gsms_user_audit a )
+		</if>
+		<if test="param != null">
+			<!-- 直销没有代理商 -->
+			<if test="param.ext == 0">and u.parent_id=0</if>
+			<if test="param.ext == 1">and u.parent_id != 0</if>
+			<if test="param.ext1 != null">and u.create_time &gt;= #{param.ext1}</if>
+			<if test="param.ext2 != null">and u.create_time &lt;= #{param.ext2}</if>
+		</if>
+	</select>
+	<!-- 查找代理商总数 -->
+	<select id="findAgentCount" resultType="int">
+		select count(1) from gsms_user u where u.type=3 and u.state in(0,1,3)
+		<if test="user.salemanId > 0">and u.saleman_id=#{user.salemanId}</if>
+		<if test="user.path != null">and u.saleman_id in(select s.id from gsms_user s where s.path like concat(#{user.path}, '%'))</if>
+		<!-- if test="user.domain != null"> and u.domain like concat('%',#{user.domain},'%')</if>-->
+		<if test="user.id > 0">and u.id=#{user.id}</if>
+		<if test="user.auditingState >= 0"> and u.auditing_state=#{user.auditingState}</if>
+		<if test="user.enterpriseName != null">and u.enterprise_name like concat('%',#{user.enterpriseName},'%')</if>
+		<if test="param != null">
+			<if test="param.ext1 != null">and u.create_time &gt;= #{param.ext1}</if>
+			<if test="param.ext2 != null">and u.create_time &lt;= #{param.ext2}</if>
+		</if>
+	</select>
+	<!-- 查找代理商列表 -->
+	<select id="findAgents" resultMap="User">
+		select u.id,u.domain,u.enterprise_name,u.state,u.auditing_state,u.type as type,
+		u.create_time,u.saleman_id from gsms_user u where u.type=3 and u.state in(0,1,3)
+		<if test="user.salemanId > 0">and u.saleman_id=#{user.salemanId}</if>
+		<if test="user.path != null">and u.saleman_id in(select s.id from gsms_user s where s.path like concat(#{user.path}, '%'))</if>
+		<!-- if test="user.domain != null"> and u.domain like concat('%',#{user.domain},'%')</if>-->
+		<if test="user.id > 0">and u.id=#{user.id}</if>
+		<if test="user.enterpriseName != null">and u.enterprise_name like concat('%',#{user.enterpriseName},'%')</if>
+		<if test="user.auditingState >= 0"> and u.auditing_state=#{user.auditingState}</if>
+		<if test="param != null">
+			<if test="param.ext1 != null">and u.create_time &gt;= #{param.ext1}</if>
+			<if test="param.ext2 != null">and u.create_time &lt;= #{param.ext2}</if>
+		</if>
+		order by u.create_time desc
+		<if test="param != null">limit #{param.pi.from},#{param.pi.size}</if>
+	</select>
+	<!-- 	查找代理商详情 -->
+	<select id="findAgentById" resultMap="User">
+	select u.id,u.domain,u.enterprise_name,u.auditing_state,u.state,u.type as type,u.saleman_id,s.user_name as saleman_name,
+		u.create_time,u.region_id,u.address,u.link_man,u.phone,u.remark,r.is_approved,r.complete_time,r.comment,o.user_name as operatorDomain,a.parameters,a.state as apply_state,a.type as apply_type
+		from gsms_user u
+		left join gsms_user s on s.id=u.saleman_id
+		left join (select id,type,state,apply_time,parameters,enterprise_id,apply_user_id from gsms_enterprise_apply  where enterprise_id=#{id} order by apply_time desc limit 1) a on u.id=a.enterprise_id
+		left join (select complete_time as complete_time,target_id,is_approved,operator_id,comment from gsms_workflow_process_record where (type=0 or type=1)) r on r.target_id=a.id
+		left join gsms_user o on o.id=r.operator_id
+		where u.type=3 and (u.state=0 or u.state=1 or u.state=3) and u.id=#{id}
+	</select>
+	<!-- 查找代理商下所有分销企业 -->
+	<select id="findAgentDistribution" resultMap="User">
+		select * from gsms_user where parent_id=#{id} and type=0
+	</select>
+	<!-- 根据用户ID查找企业 -->
+	<select id="findEnterpriseById" resultMap="User">
+		select  u.*, ue.* from gsms_user u 		
+		left join gsms_user_ext ue on ue.enterprise_id=u.id
+		where u.id=#{id} limit 1
+	</select>
+
+	<!-- 根据微信账号ID查找企业 -->
+	<select id="findEnterpriseByAccountId" resultMap="User">
+		select a.* from gsms_user a left join wechat_account b on a.id=b.ent_id
+		where b.id=#{accountId}
+	</select>
+
+	<!-- 查找部门列表 -->
+	<select id="findDepartments" resultMap="User">
+		select u.id,u.parent_id,u.identify,u.enterprise_name,u.type,u.path
+		from gsms_user u where u.type=1 and (u.state=0 or u.state=1)
+		<if test="user.path == null">and u.enterprise_id=#{user.enterpriseId}</if>
+		<if test="user.path != null">and u.path like concat(#{user.path},'%')</if>
+		<if test="user.identify != null">and u.identify like concat('%',#{user.identify},'%')</if>
+		<if test="user.deptName != null">and u.enterprise_name like concat('%',#{user.deptName},'%')</if>
+		<if test="param != null">limit #{param.pi.from},#{param.pi.size}</if>
+	</select>
+	<!-- 查找部门总数 -->
+	<select id="findDeptCount" resultType="int">
+		select count(1) from gsms_user where type=1 and (state=0 or state=1)
+		<if test="user.path == null">and enterprise_id=#{user.enterpriseId}</if>
+		<if test="user.path != null">and path like concat(#{user.path},'%')</if>
+		<if test="user.identify != null">and identify like concat('%',#{user.identify},'%')</if>
+		<if test="user.deptName != null">and enterprise_name like concat('%',#{user.deptName},'%')</if>
+	</select>
+	<!-- 查找用户列表 -->
+	<select id="findUsers" resultMap="User">
+		select u.id,u.user_name,u.parent_id,u.identify,u.phone,u.link_man,
+		u.type,u.state,u.enterprise_id,u.birthday,u.sex,u.remark from gsms_user u where u.type=2 and (u.state=0 or u.state=1)
+		<if test="param.ext1 > 0">and u.id <if test="param.notIn">not</if> in (select user_id from gsms_user_role where role_id=#{param.ext1})</if><!-- param.ext1:角色ID -->
+		<if test="param.ext2 == true">and u.path like concat(#{user.path},'%') and u.id > #{param.ext}</if><!-- param.ext:admin ID,param.ext2:是否包含子级 -->
+		<if test="param.ext2 == false">and u.parent_id=#{user.parentId} and u.id > #{param.ext}</if>
+		<if test="user.id > 0">and u.id=#{user.id}</if>
+		<if test="user.userName != null">and u.user_name like concat('%',#{user.userName},'%')</if>
+		<if test="user.identify != null">and u.identify like concat('%',#{user.identify},'%')</if>
+		<if test="user.linkMan != null">and u.link_man like concat('%',#{user.linkMan},'%')</if>
+		<choose>
+			<when test="param.orderField == 'userName'">
+				order by u.user_name <if test="param.desc">desc</if>
+			</when>
+			<when test="param.orderField == 'linkMan'">
+				order by u.link_man <if test="param.desc">desc</if>
+			</when>
+		</choose>
+		<if test="param.pi!=null">limit #{param.pi.from},#{param.pi.size}</if>
+	</select>
+	<!-- 查找用户总数 -->
+	<select id="findUserCount" resultType="int">
+		select count(1) from gsms_user where type=2 and (state=0 or state=1)
+		<if test="param.ext1 > 0">and id <if test="param.notIn">not</if> in (select user_id from gsms_user_role where role_id=#{param.ext1})</if><!-- param.ext1:角色ID -->
+		<if test="param.ext2 == true">and path like concat(#{user.path},'%') and id > #{param.ext}</if><!-- param.ext:admin ID,param.ext2:是否包含子级 -->
+		<if test="param.ext2 == false">and parent_id=#{user.parentId} and id > #{param.ext}</if>
+		<if test="user.userName != null">and user_name like concat('%',#{user.userName},'%')</if>
+		<if test="user.identify != null">and identify like concat('%',#{user.identify},'%')</if>
+		<if test="user.linkMan != null">and link_man like concat('%',#{user.linkMan},'%')</if>
+	</select>
+	<!-- 新增部门 -->
+	<insert id="addDepartment" parameterType="com.xuanwu.web.common.entity.User">
+		insert into gsms_user(user_name,password,parent_id,type,identify,create_time,
+		remark,enterprise_name,enterprise_id,path,auditing_flag,
+		enable_black_list_filter,enable_keyword_filter,platform_id,auditing_state)
+		values('','',#{parentId},1,#{identify},#{createTime},#{remark},
+		#{deptName},#{enterpriseId},#{path},0,0,0,#{platformId},1)
+	</insert>
+	<!-- 新增用户 -->
+	<insert id="addUser" parameterType="com.xuanwu.web.common.entity.User">
+		insert into gsms_user(user_name,password,parent_id,type,identify,
+		signature,sig_location,create_time,phone,link_man,remark,
+		enterprise_name,enterprise_id,path,auditing_flag,
+		enable_black_list_filter,enable_keyword_filter,platform_id,sex,birthday,auditing_state)
+		values(#{userName},#{password},#{parentId},2,#{identify},#{signature},#{sigLocation},
+		#{createTime},#{phone},#{linkMan},#{remark},'',#{enterpriseId},#{path},0,0,0,#{platformId},#{sex},#{birthday},1)
+	</insert>
+
+	<!-- 新增代理商 -->
+	<insert id="addAgent" parameterType="com.xuanwu.web.common.entity.User">
+		insert into gsms_user(user_name,password,domain,init_password,enterprise_name,parent_id,type,identify,
+		signature,sig_location,create_time,phone,link_man,remark,address,region_id,enterprise_id,path,
+		auditing_flag,enable_black_list_filter,enable_keyword_filter,platform_id,auditing_state,saleman_id,state)
+		values('','',#{domain},#{initPassword},#{enterpriseName},#{parentId},3,#{identify},#{signature},#{sigLocation},
+		#{createTime},#{phone},#{linkMan},#{remark},#{address},#{regionId},#{enterpriseId},'',0,0,0,#{platformId},#{auditingState},#{salemanId},#{state})
+	</insert>
+
+	<!-- 新增企业 -->
+	<insert id="addEnterprise" parameterType="com.xuanwu.web.common.entity.User">
+		insert into gsms_user(user_name,password,domain,init_password,enterprise_name,priority,signature,
+		sig_location,link_man,parent_id,saleman_id,type,identify,create_time,telephone,phone,remark,enterprise_id,path,
+		auditing_flag,industry_id,region_id,address,auditing_state,enable_black_list_filter,enable_keyword_filter,
+		platform_id,billing_type)
+		values('','',#{domain},#{initPassword},#{enterpriseName},#{priority},#{signature},#{sigLocation},#{linkMan},
+		#{parentId},#{salemanId},0,#{identify},#{createTime},#{telephone},#{phone},#{remark},#{enterpriseId},'',0,#{industryId},
+		#{regionId},#{address},1,1,1,#{platformId},#{billingType})
+	</insert>
+
+	<!-- 企业扩展参数 -->
+	<insert id="addEnterpriseExt" parameterType="com.xuanwu.web.common.entity.User">
+		insert into gsms_user_ext(enterprise_id,default_mo_user,show_specnum_flag,show_statereport_flag,modify_user,modify_time,create_user,balance_remain,cmd_token,cmd_sub_token,cmd_error_reply,wechat_limit_number)
+		values(#{user.id},#{user.moUser},#{user.showSpecnumFlag},#{user.showStatereportFlag},#{user.modifyUser},#{user.modifyTime},#{user.createUser},#{user.balanceRemain},#{user.cmdToken},#{user.cmdSubToken}
+		,#{user.cmdErrorReply},#{user.wechatLimitNumber})
+	</insert>
+
+	<!-- 更新企业扩展参数 -->
+	<update id="updateEnterpriseExt" parameterType="com.xuanwu.web.common.entity.User">
+		update gsms_user_ext set id=id
+		<if test="user.createUser > 0">,create_user=#{user.createUser}</if>
+		<if test="user.showSpecnumFlag != null">,show_specnum_flag=#{user.showSpecnumFlag}</if>
+		<if test="user.showStatereportFlag != null">,show_statereport_flag=#{user.showStatereportFlag}</if>
+		<if test="user.modifyTime != null">,modify_time=#{user.modifyTime}</if>
+		<if test="user.modifyUser > 0">,modify_user=#{user.modifyUser}</if>
+		<if test="user.moUser > 0">,default_mo_user=#{user.moUser}</if>
+		<if test="user.balanceRemain >= 0">,balance_remain=#{user.balanceRemain}</if>
+		<if test="user.cmdToken != null">,cmd_token=#{user.cmdToken}</if>
+		<if test="user.cmdSubToken != null">,cmd_sub_token=#{user.cmdSubToken}</if>
+		<if test="user.cmdErrorReply != null">,cmd_error_reply=#{user.cmdErrorReply}</if>
+		<if test="user.creditReg != null">,credit_reg=#{user.creditReg}</if>
+		<if test="user.wechatLimitNumber > 0">,wechat_limit_number=#{user.wechatLimitNumber}</if>
+		where enterprise_id=#{user.id}
+	</update>
+
+	<select id="getUserExtCount" resultType="int">
+		select count(1) from gsms_user_ext where enterprise_id=#{id}
+	</select>
+
+	<!-- 新增用户与角色的绑定 -->
+	<insert id="addUserRole">
+		insert into gsms_user_role(user_id,role_id)
+		values(#{userId},#{roleId})
+	</insert>
+	<!-- 新增用户与业务类型的绑定 -->
+	<insert id="addUserBizType">
+		insert into gsms_user_business_type(user_id,type_id,bus_type)
+		values(#{userId},#{bizId},#{busType})
+	</insert>
+	<!-- 根据GSMS用户ID，删除GSMS用户 -->
+	<delete id="deleteUser">
+		delete from gsms_user where id=#{user.id}
+	</delete>
+	<!-- 根据用户ID与角色ID，删除用户与角色的绑定 -->
+	<delete id="deleteUserRole">
+		delete from gsms_user_role where user_id=#{userId} and role_id=#{roleId}
+	</delete>
+	<!-- 根据用户ID，删除用户与角色的所有绑定 -->
+	<delete id="deleteUserRoles">
+		delete from gsms_user_role where user_id=#{user.id}
+	</delete>
+	
+	<!-- 根据部门ID，更新部门信息 -->
+	<update id="updateDepartment">
+		update gsms_user set
+		<if test="user.identify == null">enterprise_name=#{user.deptName},remark=#{user.remark}</if>
+		<if test="user.identify != null">identify=#{user.identify}</if>
+		where id=#{user.id}
+	</update>
+	<!-- 根据用户ID，更新用户信息 -->
+	<update id="updateUser">
+		update gsms_user set link_man=#{user.linkMan},state=#{user.state},
+		phone=#{user.phone},identify=#{user.identify},signature=#{user.signature},
+		sex=#{user.sex},birthday=#{user.birthday},sig_location=#{user.sigLocation},remark=#{user.remark}
+		where id=#{user.id}
+	</update>
+	<!-- 根据用户ID，更新用户信息，有需要的字段才更新 -->
+	<update id="updateUserExt">
+		update gsms_user set type=2
+		<if test="user.password != null">,password=#{user.password}</if>
+		<if test="user.isFirstTimeLogin != null">,is_first_time_login=#{user.isFirstTimeLogin}</if>
+		<if test="user.lastLoginTime != null">,last_login_time=#{user.lastLoginTime}</if>
+		<if test="user.phone != null">,phone=#{user.phone}</if>
+		where id=#{user.id}
+	</update>
+	<!-- 根据GSMS用户ID，更新GSMS用户状态 -->
+	<update id="updateUserState">
+		update gsms_user set state=#{user.state}
+		<if test="user.state==2 and user.type.index==0">,domain=concat(domain,'【已删】')</if>
+		<if test="user.state==2 and user.type.index==1">,enterprise_name=concat(enterprise_name,'【已删】')</if>
+		<if test="user.state==2 and user.type.index==2">,user_name=concat(user_name,'【已删】')</if>
+		<if test="user.state==2 and user.type.index==3">,domain=concat(domain,'【已删】')</if>
+		 where id=#{user.id}
+	</update>
+	<!-- 根据用户ID，更新企业信息，变更审核状态、销售、代理商，有需要的字段才更新 -->
+	<update id="updateExtEnterprise">
+		update gsms_user set type=0
+		<if test="user.parentId > 0">,parent_id=#{user.parentId}</if>
+		<if test="user.salemanId > 0">,saleman_id=#{user.salemanId}</if>
+		<if test="user.auditingState >= 0">,auditing_state=#{user.auditingState}</if>
+		where id=#{user.id}
+	</update>
+	<!-- 根据企业ID，更新企业信息 -->
+	<update id="updateEnterprise">
+		update gsms_user set type=0
+		<if test="ent.enterpriseName != null">,enterprise_name=#{ent.enterpriseName}</if>
+		<if test="ent.billingType >= 0">,billing_type=#{ent.billingType}</if>
+		<if test="ent.initPassword != null">,init_password=#{ent.initPassword}</if>
+		<if test="ent.linkMan != null">,link_man=#{ent.linkMan}</if>
+		<if test="ent.address != null">,address=#{ent.address}</if>
+		<if test="ent.remark != null">,remark=#{ent.remark}</if>
+		<if test="ent.industryId >= 0">,industry_id=#{ent.industryId}</if>
+		<if test="ent.regionId > 0">,region_id=#{ent.regionId}</if>
+		<if test="ent.phone != null">,phone=#{ent.phone}</if>
+		<if test="ent.telephone != null">,telephone=#{ent.telephone}</if>
+		<if test="ent.priority > 0">,priority=#{ent.priority}</if>
+		<if test="ent.identify != null">,identify=#{ent.identify}</if>
+		<if test="ent.signature != null">,signature=#{ent.signature}</if>
+		<if test="ent.auditingFlag != null">,auditing_flag=#{ent.auditingFlag},auditing_num=#{ent.auditingNum}</if>
+		<if test="ent.auditingMmsFlag != null">,auditing_mms_flag=#{ent.auditingMmsFlag},auditing_mms_num=#{ent.auditingMmsNum}</if>
+		<if test="ent.sigLocation >= 0">,sig_location=#{ent.sigLocation}</if>
+		where id=#{ent.id}
+	</update>
+	<!-- 根据代理商ID，更新代理商信息,包括 删除，启停，修改都使用该方法,使用的agent请从数据库find出-->
+	<update id="updateAgent">
+		update gsms_user set
+		enterprise_name = #{agent.enterpriseName},
+		link_man=#{agent.linkMan},
+		phone=#{agent.phone},
+		address=#{agent.address},
+		region_id=#{agent.regionId},
+	    remark=#{agent.remark},
+	    saleman_id=#{agent.salemanId},
+		state=#{agent.state},
+		auditing_state=#{agent.auditingState}
+		where id=#{agent.id}
+	</update>
+	<!-- 根据用户ID，查找用户是否发送过信息 -->
+	<select id="findUserHasSendMsg" resultType="int">
+		select count(1) from gsms_user
+		where id=#{user.id} and has_send_message=1
+	</select>
+	<!-- 根据用户名，查找用户名是否已存在，全局唯一 -->
+	<select id="findUserNameExist" resultType="int">
+		select count(1) from gsms_user where user_name=#{user.userName}
+		and type=2 and (state=0 or state=1)
+		<if test="user.id > 0">and id != #{user.id}</if>
+	</select>
+	<!-- 根据用户名，查找正常状态用户是否已存在，全局唯一 -->
+	<select id="findNormalUserNameExist" resultType="int">
+		select count(1) from gsms_user where user_name=#{user.userName}
+		and type=2 and state=0
+		<if test="user.id > 0">and id != #{user.id}</if>
+	</select>
+
+	<!-- 根据用户名，查找用户名是否已存在，企业账号&代理商账号内唯一 -->
+	<select id="findEntNameExist" resultType="int">
+		select count(1) from gsms_user where domain=#{user.domain}
+		and (type=0 or type=3)
+		<if test="user.id > 0">and id != #{user.id}</if>
+	</select>
+	<!-- 根据部门编号（或用户扩展码），查找部门编号是否已存在，企业唯一 -->
+	<select id="findIdentifyExist" resultType="int">
+		select count(1) from gsms_user where identify=#{user.identify}
+		and type=#{user.type.index} and (state=0 or state=1)
+		<if test="user.enterpriseId > 0">and enterprise_id=#{user.enterpriseId}</if>
+		<if test="user.id > 0">and id != #{user.id}</if>
+	</select>
+	<!-- 根据部门名称，查找部门名称是否已存在，部门唯一 -->
+	<select id="findDeptNameExist" resultType="int">
+		select count(1) from gsms_user where parent_id=#{user.parentId}
+		and type=1 and (state=0 or state=1)
+		and enterprise_name=#{user.deptName}
+		<if test="user.id > 0">and id != #{user.id}</if>
+	</select>
+	<!-- 根据父ID，查找子GSMS用户状态 -->
+	<select id="findChildStates" resultType="int">
+		select state from gsms_user where parent_id=#{parentId} group by state
+	</select>
+	<!-- 根据父ID，查找代理商下企业状态 -->
+	<select id="findAgentChildStates" resultType="int">
+		select state from gsms_user where parent_id=#{parentId} and type=0 group by state
+	</select>
+	<!-- 查找所有子GSMS用户ID -->
+	<select id="findChildIdsByParent" resultType="int">
+		select id from gsms_user where
+		<if test="containChild == true">path like concat(#{path},'%')</if>
+		<if test="containChild == false">parent_id=#{pId}</if>
+		<if test="type != null">and type=#{type.index}</if>
+	</select>
+	<!-- 根据企业ID查找该企业下所有部门 -->
+	<select id="findAllEntDepts" resultMap="User">
+		select id,state,parent_id,type,identify,enterprise_name,path from gsms_user
+		where enterprise_id=#{entId} and type=1
+	</select>
+	<!-- 简单用户查询，一般用于自动补全 -->
+	<select id="findUsersSimple" resultMap="User">
+		select id,user_name,state,parent_id,type,identify
+		from gsms_user where type=2
+		<if test="states != null">and state in<foreach collection="states" item="item" open="(" separator="," close=")">#{item.index}</foreach></if>
+		<if test="user.enterpriseId > 0">and enterprise_id= #{user.enterpriseId}</if>
+		<if test="user.path != null">and path like concat(#{user.path},'%')</if>
+		<if test="user.userName != null">and user_name like concat(#{user.userName},'%')</if>
+		<if test="user.platformId >= 0">and platform_id=#{user.platformId}</if>
+		
+		<if test="param != null">
+		<if test="param.ext1 != null and param.ext1 == 'excludeAdmin'"> and user_name not like 'admin@%'</if>
+			limit #{param.pi.size}
+		</if>
+	</select>
+	<!-- 简单联系人查询，用于所属销售自动补全查询-->
+	<select id="findLinkMansSimple" resultMap="User">
+		select id,user_name,state,parent_id,type,identify,link_man
+		from gsms_user where type=2
+		<if test="states != null">and state in<foreach collection="states" item="item" open="(" separator="," close=")">#{item.index}</foreach></if>
+		<if test="user.enterpriseId > 0"> and enterprise_id= #{user.enterpriseId}</if>
+		<if test="user.path != null"> and path like concat(#{user.path},'%')</if>
+		<if test="user.userName != null"> and link_man like concat(#{user.userName},'%')</if>
+		<if test="user.platformId >= 0"> and platform_id=#{user.platformId}</if>
+		order by length(link_man)
+		<if test="param != null">limit #{param.pi.size}</if>
+	</select>
+	<!-- 简单企业查询，一般用于自动补全 -->
+	<select id="findEntsSimple" resultMap="User">
+		select u.id,u.domain,u.state,u.type,u.enterprise_name,u.signature,u.platform_id from gsms_user u where u.type=0
+		<if test="states != null">and u.state in<foreach collection="states" item="item" open="(" separator="," close=")">#{item.index}</foreach></if>
+		<if test="ent.salemanId > 0">and u.saleman_id=#{ent.salemanId}</if>
+		<if test="ent.path != null">and u.saleman_id in(select s.id from gsms_user s where s.path like concat(#{ent.path}, '%'))</if>
+		<if test="ent.domain != null">and u.domain like concat('%',#{ent.domain},'%')</if>
+		<if test="ent.parentId >=0">and u.parent_id=#{ent.parentId}</if>
+		<if test="ent.parentId ==-2">and u.parent_id>0</if>
+		<if test="ent.platformId >= 0">and u.platform_id=#{ent.platformId}</if>
+		order by length(u.domain)
+		<if test="param != null">limit #{param.pi.size}</if>
+	</select>
+	<select id="findUserIdsByUserName" resultType="int">
+		select id from gsms_user where enterprise_id= #{entId} and user_name like concat(#{userName},'%') and type=2 and state=0
+	</select>
+	<select id="findUserByEntId" resultMap="User">
+		select id,user_name,state,type,identify,path from gsms_user
+		where enterprise_id=#{entId} and id &gt; #{pointId} limit #{maxSize}
+	</select>
+
+	<select id="findUserNameById" resultType="string">
+		select user_name from gsms_user where id=#{id}
+	</select>
+
+	<select id="findLinkManById" resultType="string">
+		select link_man from gsms_user where id=#{id}
+	</select>
+
+	<select id="findLastInsertId" resultType="int">
+		select last_insert_id()
+	</select>
+
+	<select id="findPathById" resultType="String">
+		select path from gsms_user where id=#{id}
+	</select>
+
+	<select id="findDeptName" resultType="String">
+		select enterprise_name from gsms_user where id=#{deptId}
+    </select>
+
+    <select id="findCurrentDept" resultMap="department">
+		select id,enterprise_name from gsms_user
+		where (type=1 and path like concat(#{path},'%')) or id=#{deptId}
+		order by length(path)
+	</select>
+
+    <select id="findUserID" resultType="int">
+        select id from gsms_user where user_name=#{userName}
+    </select>
+
+    <select id="findEnterpriseID" resultType="int">
+        select id from gsms_user where enterprise_name=#{enterpriseName} and type=0
+    </select>
+
+	<!-- 查找前端用户总数 -->
+	<select id="findFronkitUserCount" resultType="int">
+		select count(1) from  gsms_user u 
+		inner join gsms_user ent on u.enterprise_id=ent.id
+		inner join gsms_user s on s.id=ent.saleman_id 
+		<if test="ent.parentName != null or ent.parentEntName != null">
+			left outer join gsms_user agent on agent.id=ent.parent_id
+		</if>
+		where (u.type=2) and (u.state=0 or u.state=1) and u.platform_id=2 and ent.type=0 and u.user_name not like 'admin@%'
+		<if test="ent.id > 0"> and u.enterprise_id=#{ent.id}</if>
+		<if test="ent.enterpriseName != null"> and ent.enterprise_name like concat('%',#{ent.enterpriseName},'%')</if>
+		<if test="ent.path != null"> and ent.saleman_id in(select s.id from gsms_user s where s.path like concat(#{ent.path}, '%'))</if>
+		<if test="ent.salemanId > 0"> and ent.saleman_id=#{ent.salemanId}</if>
+		<if test="ent.domain != null"> and ent.domain like concat('%',#{ent.domain},'%')</if>
+		<if test="ent.salemanName != null"> and s.link_man like concat('%',#{ent.salemanName},'%')</if>
+		<if test="ent.signature != null"> and u.signature like concat('%',#{ent.signature},'%')</if>
+		<if test="ent.parentId > 0"> and ent.parent_id=#{ent.parentId}</if>
+		<if test="ent.parentName != null"> and agent.domain like concat('%',#{ent.parentName},'%')</if>
+		<if test="ent.parentEntName != null"> and agent.enterprise_name like concat('%',#{ent.parentEntName},'%')</if>
+		<if test="param != null">
+			<!-- 发送账号 -->
+			<if test="param.ext != null"> and u.user_name like concat('%',#{param.ext},'%')</if>
+			<if test="param.ext1 != null and param.ext1 > 0"> and u.id=#{param.ext1}</if>
+		</if>
+	</select>
+	
+	<!-- 查找前端用户列表 -->
+	<select id="findFronkitUsers" resultMap="User">
+		select u.id,u.user_name,u.parent_id,u.identify,u.phone,u.link_man,u.create_time,u.signature,
+			u.type,u.state,u.enterprise_id,u.birthday,u.sex,u.remark,u.user_name as domain,
+			ent.domain as ent_domain,ent.enterprise_name as enterprise_name,ent.parent_id as ent_parent_id,ent.state as ent_state,
+			s.id as saleman_id,s.link_man as saleman_name,a.id as agent_id, a.domain as agent_name,a.enterprise_name as agent_ent_name 
+		from gsms_user u inner join gsms_user ent on u.enterprise_id=ent.id 
+			inner join gsms_user s on s.id=ent.saleman_id 
+			left outer join gsms_user a on a.id=ent.parent_id
+		where (u.type=2) and (u.state=0 or u.state=1) and u.platform_id=2 and ent.type=0 and u.user_name not like 'admin@%' 
+		<if test="ent.id > 0"> and u.enterprise_id=#{ent.id}</if>
+		<if test="ent.enterpriseName != null"> and ent.enterprise_name like concat('%',#{ent.enterpriseName},'%')</if>
+		<if test="ent.path != null"> and ent.saleman_id in(select s.id from gsms_user s where s.path like concat(#{ent.path}, '%'))</if>
+		<if test="ent.salemanId > 0"> and ent.saleman_id=#{ent.salemanId}</if>
+		<if test="ent.domain != null"> and ent.domain like concat('%',#{ent.domain},'%')</if>
+		<if test="ent.salemanName != null"> and s.link_man like concat('%',#{ent.salemanName},'%')</if>
+		<if test="ent.signature != null"> and u.signature like concat('%',#{ent.signature},'%')</if>
+		<if test="ent.parentId > 0"> and ent.parent_id=#{ent.parentId}</if>
+		<if test="ent.parentName != null"> and a.domain like concat('%',#{ent.parentName},'%')</if>
+		<if test="ent.parentEntName != null"> and a.enterprise_name like concat('%',#{ent.parentEntName},'%')</if>
+		<if test="param != null">
+			<!-- 发送账号 -->
+			<if test="param.ext != null"> and u.user_name like concat('%',#{param.ext},'%')</if>
+			<if test="param.ext1 != null and param.ext1 > 0"> and u.id=#{param.ext1}</if>
+		</if>
+		order by u.enterprise_id
+		<if test="param.pi!=null"> limit #{param.pi.from},#{param.pi.size}</if>
+	</select>
+</mapper>

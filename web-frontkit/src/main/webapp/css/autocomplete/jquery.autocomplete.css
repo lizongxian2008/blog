@@ -1,0 +1,6 @@
+.ac_results{margin-top:2px;padding:0px;border:2px solid #5ECAF4;background-color:white;overflow:hidden;z-index:99999;}
+.ac_results ul{margin:0;padding:0;width:100%;list-style-position:outside;list-style:none;}
+.ac_results li{margin:0;padding:3px 5px;display:block;cursor:pointer;overflow:hidden;}
+.ac_loading {background: white url('indicator.gif') right center no-repeat;}
+.ac_odd{background-color: #eee;}
+.ac_over{background-color: #D9EFFF;color:#171717;}

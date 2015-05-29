@@ -1,0 +1,302 @@
+/* 全兼容主操作界面*/
+/* 作者：简单格调*/
+/* 博客：简单格调博客:http://blog.sina.com.cn/samdlynew*/
+/* Email:samdlynew@sina.com*/
+/* 日期：2011-05-27*/
+
+/* CSS Document */
+/*内容身体部分总框架样式，目前有：全局百分比，左21%右79%，左79%右21%*/
+/*全局百分比*/
+/*公共样式*/
+.page_content{_display:inline-block;border:1px solid #A7A6A6; height:auto; /*overflow:hidden注释掉，以免显示/隐藏列的列表显示不完整*/;}
+.page_wrang_say{height:20px; font-size:12px; text-align:left; color:#ff0000; line-height:20px;}
+.page_wrang_say *{margin:0; padding:0; list-style:none; border:none;}
+
+/*左220右100%-220*/
+.Page_L2R8{width:100%;}
+.L2R8_L2{float:left; width:219px; border-top:1px solid #A7A6A6;border-left:1px solid #A7A6A6;border-bottom:1px solid #A7A6A6;z-index:9;_width:217px;}
+.L2R8_L2_mms{float:left; width:100%;z-index:9;border:1px solid #A7A6A6}
+
+.L2R8_R8{overflow:hidden;height:auto; border:1px solid #A7A6A6;_left:-3px;}
+/*左100%-220右220*/
+.Page_L8R2{padding-right:222px;}
+.L8R2_L8{width:100%; border:1px solid #9fa0a0;}
+.L8R2_R2{float:right; width:220px; border:1px solid #A7A6A6; position:absolute; z-index:9; right:14px;}
+/*左220，中100%-440，右50*/
+.Page_L2M6R2{padding-left:200px; padding-right:50px; height:516px;}
+.L2M6R2_L2{float:left; width:180px; border:1px solid #A7A6A6;  position:absolute; z-index:9; margin-left:-181px;}
+.L2M6R2_M6{width:100%; border:1px solid #A7A6A6;}
+.L2M6R2_R2{float:right; width:30px; position:absolute; z-index:999; right:244px; top:400px;}
+/*内容头部部分标题样式*/
+.page_title{ width:100%; height:35px; border-bottom:1px solid #A7A6A6; margin-bottom:10px; margin-top:8px;}
+.page_title strong{ font-size:28px;}
+.page_title label{margin-left:5px;}
+.page_title button{ float:right; margin:10px 5px auto auto; _margin:-22px 5px auto auto;}
+.page_say{color:#ff0000; font-size:12px; height:20px; width:100%; line-height:20px;}
+/*页内卡片式导航条*/
+.page_nav_B_bg{width:100%; height:30px; background:url('../../images/default/nav_styleB_bg.gif') no-repeat; background-position:right; margin:10px 0px 5px 0px;}
+/*页内卡片式导航按钮
+**navB_bt_A大小为120x30，首个按钮
+**navB_bt_B大小为140x30
+**navC_bt_B大小为170x30
+**more_bt更多按钮
+*/
+.navB_bt_A,.navB_bt_A_over,.navB_bt_A_down{width:105px; height:30px; float:left; line-height:30px; padding-left:15px; cursor:pointer; background:url('../../images/default/120x30_nav_styleB_bt.gif') no-repeat;}
+.navB_bt_B,.navB_bt_B_over,.navB_bt_B_down{width:110px; height:30px; float:left; line-height:30px; padding-left:40px; margin-left:-30px; cursor:pointer; background:url('../../images/default/150x30_nav_styleB_bt.gif') no-repeat;}
+.navB_bt_C,.navB_bt_C_over,.navB_bt_C_down{width:170px; height:30px; float:left; line-height:30px; padding-left:40px; margin-left:-30px; cursor:pointer; background:url('../../images/default/170x30_nav_styleB_bt.gif') no-repeat;}
+.navB_bt_A label,.navB_bt_A_over label,.navB_bt_A_down label,.navB_bt_B label,.navB_bt_B_over label,.navB_bt_B_down label,.navB_bt_C label,.navB_bt_C_over label,.navB_bt_C_down label{ cursor:pointer;}
+.navB_bt_A_over,.navB_bt_B_over,.navB_bt_C_over{ background-position:0px -30px;}
+.navB_bt_A_down,.navB_bt_B_down,.navB_bt_C_down{ background-position:0px -60px;}
+.more_bt,.more_bt_over{ width:25px; height:16px; color:#007eff; background:url('../../images/default/morebt.gif') no-repeat; padding-left:20px; cursor:pointer; margin-top:4px;*margin-top:8px;}
+.more_bt_over{ background-position:0px -16px; color:#4edde6;}
+.more_box{ height:26px;line-height:26px; position: absolute; z-index: 9; border:1px solid #9fa0a0; border-top:none; background:#c9caca;}/*更多下拉框*/
+.more_box .input_style_A_min{height:18px;width:50px;}
+
+/*更换样式系统管理导航*/
+.cont_tool_A ul,.page_tool ul{float:left;}
+.page_tool input{margin-top:5px;}
+.cont_tool_A li{float:left;cursor:pointer;display:inline;_width:65px;}
+.cont_tool_A li img,.cont_tool_B li img,.page_tool img,.mtxt_tb img{margin:0 0 0 2px; vertical-align:middle;padding-right:5px;}
+.nav_a{height:15px;padding:3px 3px 2px 3px;}
+.cont_tool_A li a,.page_tool a{color:#000;cursor:pointer;margin:2px 5px 0 0;text-decoration:none;padding:4px 5px 2px 5px;height:15px;display:block;}
+.cont_tool_A li a:visited,.page_tool a:visited{color:#000;cursor:pointer;margin:2px 5px 0 0;text-decoration:none;padding:4px 5px 2px 5px;height:15px;}
+.cont_tool_A li a:hover,.page_tool a:hover{margin:2px 5px 0 0;background:url(../../images/default/nav_bg.gif) repeat-x;padding:3px 4px 2px 4px;border:solid 1px #D6D6D6; cursor:pointer;text-decoration:none;position:relative;height:15px;display:block;}
+
+/*内容工具条样式*/
+.page_tool{height:31px; overflow:hidden; background:url('../../images/default/title_A_bg.gif') repeat-x;border-left:solid 1px #A7A6A6;border-right:solid 1px #A7A6A6;border-top:solid 1px #A7A6A6;}
+.page_tool li{float:left;_width:65px;margin-top:3px;cursor:pointer;}
+.page_tool button{ float:left; margin:auto 3px auto 3px;}
+.cont_font{line-height:31px;}
+.cont_font_a{padding-top:7px;}
+#nav_l{height:32px;_height:33px;line-height:32px;_line-height:33px;}
+
+/*标题工具条样式*/
+.cont_tool_A{width:100%;height:31px;overflow:hidden;background:url('../../images/default/title_A_bg.gif') repeat-x;border-bottom:solid 1px #A7A6A6;}
+.cont_tool_A ul{padding:3px 0 0 8px;}
+
+.cont_tool_B ul,.mtxt_tA ul,.mtxt_tA ul li,.cont_tool_C ul,.cont_tool_C ul li{color:#171717;margin:0px; margin-right:3px; padding:0px; list-style:none; float:left;overflow:hidden;_padding-top:2px;}
+.cont_tool_A div,.cont_tool_A input,.cont_tool_A button,.cont_tool_A select,.cont_tool_B div,.cont_tool_B em,.cont_tool_B input,.cont_tool_B button,.cont_tool_B select,.mtxt_tA div,.mtxt_tA input,.mtxt_tA button,.mtxt_tA select{vertical-align:middle;color:#000;}
+/*.cont_tool_A ul li strong,.cont_tool_B ul li strong{margin-left:10px;}*/
+.cont_tool_B, .cont_tool_C, .cont_tool_d{color:#000;width:100%;line-height:20px;overflow:hidden;background:#EEEEEE;border-bottom:solid 1px #A7A6A6;}
+.cont_tool_B li{float:left;padding-top:5px;height:27px;_padding-top:3px;_height:28px;}
+.cont_tool_d li{float:left;padding-top:3px;height:27px;}
+.cont_tool_B a, .cont_tool_C a{_line-height:31px;color:#171717; text-decoration:none; margin-left:3px; margin-right:3px;}
+.cont_tool_B li a{display:block;_margin-top:7px;}
+
+.cont_tool_B a:hover, .cont_tool_C a:hover{color:#de5900;}
+
+/*单选框,复选框*/
+.radio,.chkbox{margin:0 3px 0 3px;padding:0;vertical-align: middle;}
+
+/*树型下拉弹出窗*/
+.dialog{position: absolute; background: #efefef; overflow-y: scroll; z-index:9;  height: 200px; border: 3px solid #b5b5b6; display:none;}
+p{ margin: 0;  height: 15px; padding:5px;}
+#id_departent p{ line-height:18px; padding-top:4px;}
+#id_departent p:hover{ background:#a8dfff; cursor:pointer;}
+
+/*系统配置页面*/
+.sysconfig ul{margin-bottom:10px; padding-left:10px; background:#F6F6F6; border:1px solid #dcdcdc;}
+.sysconfig ul li{ list-style:none; margin-top:5px; margin-bottom:5px;}
+/*个人管理*/
+.personalmgr{margin-top:0px; height:300px; font-size:14px; padding-top:10px; background:#efefef; border:1px solid #9fa0a0;}
+.personalmgr ul{width:500px;}
+.personalmgr ul li{ list-style:none; height:20px; margin-top:5px; margin-bottom:5px; float:left;}
+.personalmgr .psmg_left{width:100px; text-align:right;}
+.personalmgr .psmg_right{width:400px;}
+.personalmgr_bt{height:23px;vertical-align:top;}
+.personalmgr_bt a{display:block; color:#ffffff; font-size:12px; text-decoration:none; width:51px; height:22px; background:url('../../images/default/51x22_orange.gif'); border:none; cursor:pointer; color:#fff; line-height:22px; text-align:center;margin-top: 0px; margin-left: 3px;}
+.personalmgr_bt a:hover{background-position:0px -22px;}
+/*弹出窗口，修改手机号码*/
+.details_box_styleA{overflow:hidden; position:absolute; margin-left:230px; top:343px; display:none;}
+.details_box_styleA div{ float:left;}
+.details_box_styleA_left{background-position:0px -790px; height:48px;  background:url('../../images/default/Details_left_bg.gif') left no-repeat; width:5px;}
+.details_box_styleA_right{width:600px; height:36px; padding-top:10px;  border:1px solid #ffa200; border-left:none; background:#ffffd0;}
+.details_box_styleA_right ul,.details_box_styleA_right ul li{margin:0px; padding:0px; list-style:none; float:left;}
+ #upphonepanel ul{width:600px;}
+/*新增通道*/
+/*主窗口样式*/
+.boxbody{width:100%; padding-left:0px; margin:auto;}
+/*填写内容层样式*/
+.addchannel_content table tr td{padding:5px 0;}
+.box_tit_A{width:108px; height:22px; text-align:center; line-height:22px; background:url('../../images/default/Pop_up/box_title_styleA.gif') no-repeat;}
+.channel_show_all{background-color:#E8E8E9; border:1px solid #b5b5b6; border-top:none; padding:3px;}
+/*趋势统计*/
+.li_radio input{ vertical-align:sub;}
+/*树结构DIV*/
+.left_tree{width:218px; height:469px; overflow:auto;}
+/*接收短信*/
+.inbox_tree{width:218px; height:430px; overflow:scroll;}
+#lblIllegalMobileNum {font-size:12px; display:none; color:#f00; float:right;margin-right:50px;}
+*html #lblIllegalMobileNum {font-size:12px; display:none; color:#f00; float:right;margin-right:30px; margin-top:-13px;}
+*+html #lblIllegalMobileNum {font-size:12px; display:none; color:#f00; float:right;margin-right:45px; margin-top:-21px;}
+/*发送短信*/
+.left_titleB label,.left_titleB font, #lblAmountMsg font, #lblAccountMsg font, #lblBusinessTypeMsg font{font-size:12px;color:#ff0000;}
+.smscontent_box{overflow:hidden;width:100%;}
+.smscontent_box textarea{border-left:none;border-right:none;}
+.smscontent{width:100%; height:100px; overflow:auto; font-size:14px;list-style:none; margin:0; padding:0; border:1px solid #b5b5b6;}
+/*短信跟踪审批页面*/
+.boxbody_styleB_content ul{margin:0px; padding:0px;}
+.boxbody_styleB_content ul li{ list-style:none; float:left; text-align:right; width:140px; font-size:14px; margin-top:3px; margin-bottom:3px;}
+.boxbody_styleB_content .font14_blue{color:#00ccff; width:200px; text-align:left;}
+.importConfig{position:absolute; margin-top:-100px; background:#efefef; z-index:999; display:block;}
+/*预览*/
+.show_phone{width:250px; height:449px; display:block; background:url('../../images/default/mms/phone_bg.png') no-repeat #edeaea; background-position:7px 7px;  border:1px solid #9fa0a0; position:absolute; z-index:9; top:-1px; _top:-1px; right:-1px;}
+.show_phone_txt{width:182px; height:260px; overflow:hidden; margin-top:101px; margin-left:45px; font-size:14px;}
+.show_phone_bt{width:182px; height:34px; overflow:hidden; background:url('../../images/default/sms/iphone4_bt.gif') no-repeat; margin-left:45px;}
+.up_style_bt,.up_style_bt_over,.next_style_bt,.next_style_bt_over{ cursor:pointer; border:none; background:url('../../images/default/sms/iphone4_bt.gif') no-repeat; width:90px; height:34px; float:left;}
+.up_style_bt_over{ background-position:0px -38px}
+.next_style_bt{background-position:-92px 0px; margin-left:2px;}
+.next_style_bt_over{background-position:-92px -38px; margin-left:2px;}
+#txtSmsPreview {width:180px; height:258px; position:absolute; overflow-y:auto;font-weight:bold; background-color:#fcffad; border:none;border:1px solid none;}
+/*设置*/
+.settingbox{display:block;width:450px; height:170px; position:absolute; left:0px; top:0px; background:#efefef; z-index:9; border-right:1px solid #9fa0a0; border-top:1px solid #9fa0a0;}
+.settingbox ul{margin:10px; padding-left:10px; background:#ffffff; border:1px solid #9fa0a0;}
+.settingbox ul li{ list-style:none; margin-top:5px; margin-bottom:5px;}
+.batchremark{width:97%;height:50px;overflow:auto;font-size:12px; border:solid 1px #cccccc;}
+/*底部*/
+.sms_footer_tool{width:100%;float:left;}
+
+.box_sms_bt,.box_sms_bt_over{ background:url('../../images/default/sms/box_close_bt.png') no-repeat; width:20px; height:20px; float:right; margin:-10px; cursor:pointer;}
+.box_sms_bt_over{ background-position:0px -20px;}
+/*联系人*/
+.sms_tree{width:auto; height:380px; background:#ffffff;}
+*html .more_contacts{height:20px;line-height:20px; display:none; margin-top: 5px;}
+*+html .more_contacts{height:20px; background:#ffffff; line-height:20px; display:none; margin-top: 5px;}
+.more_contacts{height:20px; background:#ffffff; line-height:20px; display:none; margin-top: -3px;}
+.more_contacts a{ color:#b85200; text-decoration:none;}
+.more_contacts a:hover{ color:#00a2ff; text-decoration:underline;}
+/*通讯录按钮*/
+.cont_tool_C{width:100%; height:22px; padding-top:3px; overflow:hidden; padding-bottom:3px; _padding-top:2px; line-height:22px; border-top:1px solid #9fa0a0;  border-bottom:1px solid #9fa0a0; background:#edeaea;}
+.cont_tool_C div{ float:left; margin-right:10px;}
+.contects_bt{width:99px; height:30px; border:none; background:url('../../images/default/sms/contects_bt.gif') repeat-x 0px -32px; margin-left:-6px; margin-top:-5px; float:left; margin-right:4px;  cursor:pointer; display:none;}
+.bt_importing{ background-image:url('../../images/default/sms/import.gif') repeat-x; width:71px; height:22px; border:none; overflow:hidden; background-color:none;}
+.left_titleB label{color:#727171;}
+.left_titleB font{color:#ff0000;}
+/*导入文件按钮*/
+.import_bt { background:url('../../images/default/sms/import.gif');}
+.import_bt_over { background:url('../../images/default/sms/import_over.gif');}
+/*通讯录选择*/
+.sh_p_bt_box{width:100%; height:31px;background:url('../../images/default/title_A_bg.gif') repeat-x;border-bottom:1px solid #9fa0a0;}
+.sh_p_bt,.sh_p_bt_over{line-height:31px;text-align:center;width:109px;height:31px;float:left;cursor:pointer;}
+.sh_p_bt{color:#ffffff;background:#9fa0a0;}
+.sms_ct_tree{width:219px; height:469px; overflow:auto; background:#ffffff;}
+.contect_add_bt,.contect_add_bt_over{width:27px; height:63px; border:none; background:url('../../images/default/sms/contect_add_bt.gif') no-repeat; cursor:pointer; }
+.contect_add_bt_over{ background-position:-27px 0px;}
+#lblAmountMsg font, .cont_tool_B font, #lblAccountMsg font{color:#ff0000;}
+/*通讯录选择关闭按钮*/
+.box_contact_bt { background:url('../../images/default/sms/box_close_bt.png') no-repeat; background-position:0% 100%; width:16px; height:20px; cursor:pointer; float:right;margin-left:5px;}
+*html .box_contact_bt { background:url('../../images/default/sms/box_close_bt.png') no-repeat; width:20px; height:20px; cursor:pointer; float:left; margin-left:5px;margin-top:2px;}
+*+html .box_contact_bt { background:url('../../images/default/sms/box_close_bt.png') no-repeat; width:20px; height:20px;  cursor:pointer; float:left; margin-left:5px;margin-top:2px;}
+/*收信人与短信内容*/
+.sms_contact{height:200px; border-bottom:1px solid #9fa0a0;background:#EBEBEB;}
+.sms_txt{height:250px;background:#EBEBEB;width:100%;}
+.sms_txt_A{height:160px;}
+.mtxt_tA{height:30px;background:#F6F6F6;border-bottom:solid 1px #A7A6A6;line-height:30px;padding:2px 0 2px 10px;}
+
+.mtxt_tb{float:left;height:30px; width:100%;line-height:30px;}
+.mtxt_tb li{float:left;padding-right:10px;}
+.mtxt_tb li a{display:block;_margin-top:8px;color:#171717;}
+.mtxt_tb li a:hover{color:#DE5900;}
+.sms_lbox{width:100%; height:130px;background:#ffffff;border-bottom:solid 1px #959595;}
+/*导入文件弹出界面*/
+#file-list{padding: 0;list-style: none;margin: 0;}
+#file-list .file-invalid{cursor: pointer;color: #514721;padding-left: 48px;line-height: 24px;background: url('/Content/JqUploadify/error.png') no-repeat 24px 5px;behavior: url('/css/iepngfix.htc');margin-bottom: 1px;}
+#file-list .file-invalid span{background-color: #fff6bf;padding: 1px;}
+#file-list .file{line-height: 2em;padding-left: 22px;background: url('/Content/JqUploadify/attach.png') no-repeat 1px 50%;vertical-align: middle;behavior: url('/css/iepngfix.htc');}
+#file-list .file span, #file-list .file a{padding: 0 4px;}
+#file-list .file .file-size{color: #666;}
+#file-list .file .file-error{color: #8a1f11;}
+/*导入文件列表*/
+#fileTree li a {background:#DFDF31;border:1px solid #B0A060; }
+#fileTree li a:hover {background:#FDDF31;border:1px solid #B0A060; }
+.file_X { background: url('../../images/default/close_bt_over.gif'); }
+.file_x { background: url('../../images/default/close_bt.gif'); }
+/*企业信息查看页面*/
+.enterpriseView{margin-top:0px; height:420px; font-size:14px; padding-top:10px; background:#efefef; border:1px solid #9fa0a0;}
+.enterpriseView ul{width:500px;}
+.enterpriseView ul li{ list-style:none; height:20px; margin-top:5px; margin-bottom:5px; float:left;}
+.enterpriseView .psmg_left{width:100px; text-align:right;}
+.enterpriseView .psmg_right{width:400px;}
+/*Logo设置页面*/
+p{ margin:0; padding:0;}
+.loginLogo{ background: url('/Content/Images/logSetting/login_set1.png'); width:150px; height:24px;  border:0; margin:0 0 5px 0}
+.loginLogo_Conent{width:340px; height:116px; border:1px solid #e8e8e8;margin:0 0 10px 0}
+.btnReplace{background-position:-71px 0px;background: url('/Content/Images/logSetting/Replace1.png'); width:79px; height:34px; float:left;}
+.btnRestore{background-position:-71px 0px;background: url('/Content/Images/logSetting/Restore1.png'); width:79px; height:34px; float:left;}
+.sysLogoset{margin-top:50px;}
+.SysLogo{width:150px;height:24px;}
+.SysLogo_Conent{width:246px;height:72px; border:1px solid #e8e8e8; margin:0 0 10px 0}
+.btnRestore1{background-position:-71px 0px;background: url('/Content/Images/logSetting/Restore2.png'); width:79px; height:34px; float:left;}
+.btnReplace1{background-position:-71px 0px;background: url('/Content/Images/logSetting/Replace2.png'); width:79px; height:34px; float:left;}
+
+.sms_btn {background:url('../../images/default/conversion.gif') no-repeat;width:135px;height:22px;border:0;cursor:pointer;}
+.sms_btn:hover {background-position:0 -22px;}
+.sms_btn_a {background:url('../../images/default/conversion.gif') no-repeat;width:135px;height:22px;border:0;cursor:pointer;background-position:-135px 0;}
+.sms_btn_a:hover {background-position:-135px -22px;}
+
+.all {background:url('../../images/default/conversion.gif') no-repeat;width:70px;height:22px;border:0;cursor:pointer;background-position:-270px 0;}
+.all:hover {background-position:-270px -22px;}
+.save {background:url('../../images/default/conversion.gif') no-repeat;width:70px;height:22px;border:0;cursor:pointer;background-position:-340px 0;}
+.save:hover {background-position:-340px -22px;}
+
+.info{padding:5px 0; margin-left:25px;width:740px;height:120px;line-height:20px; font-size:12px;word-wrap: break-word; table-layout: fixed; word-break:break-all;}
+.info_a{background:#ffffff;padding:5px 0;border:1px solid #9fa0a0; margin-left:25px;width:740px;height:60px;line-height:20px; font-size:12px;word-wrap: break-word; table-layout: fixed; word-break:break-all;}
+
+.input_top{position:absolute;width:149px;line-height:20px;height:30px;text-align:center;z-index:999;top:28px;left:330px;background:url('../../images/default/input_top.gif') no-repeat;}
+
+/* 系统配置 */
+.sysconfig {font-size:12px;}
+.sysconfig p{height:25px;line-height:25px;}
+
+/* 首页样式 */
+.home_left{float:left;width:80%;border:solid #b5b5b6 1px;background:#F7F7F7 url('../../images/default/home_bg.jpg') no-repeat center;height:524px;}
+.home_left span{float:left;width:100%;text-align:center;display:block;padding-top:65px;}
+.home_left h4,.home_right h4, .announcement h4{line-height:30px;margin:0;padding:0;color:#343434;text-indent:12px;line-height:30px;background:url('../../images/default/leftnav/nav_list_bg.gif') repeat-x;border-bottom:solid #b5b5b6 1px;font-size:12px;}
+.home_right, .announcement{float:right;width:19%;line-height:30px;background:#F7F7F7 url('../../images/default/leftnav/nav_list_bg.gif') repeat-x;border:solid #b5b5b6 1px;}
+.home_nav{float:left;width:650px;height:115px;padding-top:50px;text-align:left;}
+.template_h{width:98px;margin:auto;}
+
+.font_btn{margin-top:5px;background:url('../../images/default/Pop_up/font_btn.gif') no-repeat;line-height:30px;text-align:center;display:block;font-size:14px;font-weight:bold;width:89px;color:#fff;cursor:pointer;}
+.font_btn:link{color:#fff;cursor:pointer;}
+.font_btn:visited{color:#fff;cursor:pointer;}
+.font_btn:hover{color:#fff;cursor:pointer;background:url('../../images/default/Pop_up/font_btn_a.gif') no-repeat;line-height:30px;}
+.announcement li{background:url('../../images/default/new_line.gif') repeat-x bottom;padding:7px 0;_padding:10px 0 9px 0;}
+.copyright{float:left;width:100%;color:#343434;line-height:30px;text-align:center;margin-top:100px;}
+
+.template_btn{background:url('../../images/default/Pop_up/template_btn.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.template_btn:hover{background:url('../../images/default/Pop_up/template_btn_a.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.statistics_btn{margin-top:15px;background:url('../../images/default/Pop_up/statistics_btn.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.statistics_btn_over{margin-top:15px;background:url('../../images/default/Pop_up/statistics_btn_a.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.mms_btn{margin-top:10px;background:url('../../images/default/Pop_up/mms_btn.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.mms_btn_over{margin-top:10px;background:url('../../images/default/Pop_up/mms_btn_a.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.sms1_btn{margin-top:45px;background:url('../../images/default/Pop_up/sms_btn.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.sms1_btn_over{margin-top:45px;background:url('../../images/default/Pop_up/sms_btn_a.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.monitoring_btn{margin-top:35px;background:url('../../images/default/Pop_up/monitoring_btn.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.monitoring_btn_over{margin-top:35px;background:url('../../images/default/Pop_up/monitoring_btn_a.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.manual_btn{margin-top:10px;background:url('../../images/default/Pop_up/manual_btn.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.manual_btn:hover{margin-top:20px;background:url('../../images/default/Pop_up/manual_btn_a.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.help_btn{background:url('../../images/default/Pop_up/help_btn.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+.help_btn:hover{background:url('../../images/default/Pop_up/help_btn_a.gif') no-repeat;width:81px;height:81px;display:block;cursor:pointer;}
+
+.right_nav{border:solid 1px #ddd;width:20%;}
+.right_bg{width:25%;background:url('../../images/default/right_nav.gif') repeat-x;line-height:22px;height:22px;color:#333;border-right:solid 1px #ddd;}
+.right_nav td{height:22px;text-align:center;}
+
+/* 参数设置 */
+.parameters{border: 1px solid #DCDCDC;margin-top:10px;width: 100%;}
+.parameters .left{background:#F2F3F5;border-bottom: 1px solid #DCDCDC;border-right: 1px solid #FCFCFC;border-top: 1px solid #FCFCFC;line-height: 30px;text-align: right;width:15%;}
+.parameters .right{border-bottom: 1px solid #DCDCDC;border-left: 1px solid #DCDCDC;line-height: 30px;padding-left: 10px;text-align: left;}
+.parameters_btn{widtht:100%;text-align:center;padding:10px 0;background:#ECECED;}
+.parameters td input{vertical-align: middle;}
+
+.mo_list{border-right:solid 1px #DCDCDC;border-bottom:solid 1px #DCDCDC;text-align:center;overflow: hidden;white-space: nowrap;-o-text-overflow:ellipsis;text-overflow: ellipsis;display:block;line-height:30px;width:301px;}
+.mo_list_two{border-right:solid 1px #DCDCDC;border-bottom:solid 1px #DCDCDC;background-color:#D9EFFF;text-align:center;overflow: hidden;white-space: nowrap;-o-text-overflow:ellipsis;text-overflow: ellipsis;display:block;line-height:30px;width:301px;}
+
+.channel_t{background:url('../../images/default/channel_bg.gif') repeat-x;line-height:30px;}
+
+#inner_div_btns {text-align:center;padding:6px;border-top:1px solid #aaaaaa;}
+#inner_div_content {overflow-y:auto;}
+
+#nav_li{line-height:32px;_line-height:34px;}
+
+.address_book{float:left;width:188px;height:234px;background-color:#fff;border-right:solid 1px #A7A6A6;position:relative;}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+	<mvc:annotation-driven />
+
+	<!-- i18n -->
+	<!--
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
+		<property name="basename">
+			<value>messages</value>
+		</property>
+	</bean>
+	-->
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- static files -->
+	<mvc:resources mapping="/css/**" location="/css/" cache-period="86400" />
+	<mvc:resources mapping="/images/**" location="/images/" cache-period="86400" />	
+	<mvc:resources mapping="/scripts/**" location="/scripts/" cache-period="86400" />
+	<mvc:resources mapping="/views/home/**" location="/views/home/" cache-period="86400" />
+	<mvc:resources mapping="/tmp/**" location="/tmp/" cache-period="3600" />
+	<mvc:resources mapping="/files/**" location="/files/" cache-period="3600" />
+	
+</beans>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+  "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+	<properties resource="system.properties" />
+	<mappers>
+		<mapper resource="com/xuanwu/web/common/dao/mapper/UserMapper.xml" />
+		<mapper resource="com/xuanwu/web/common/dao/mapper/RoleMapper.xml" />
+		<mapper resource="com/xuanwu/web/common/dao/mapper/BizDataMapper.xml" />
+	</mappers>
+</configuration>
